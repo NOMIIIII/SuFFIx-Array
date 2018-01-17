@@ -1,0 +1,126 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace delete_it
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Program pg = new Program();
+            string name = "banana$";
+            int j = 0, z = 0;
+            string[] re_na = new string[name.ToCharArray().Count()];
+            string[] str_collection = new string[name.ToCharArray().Count()];
+            char com, alpha = 'a', alphaC = 'A'; int num = 0; bool flag = false;
+
+            using (StreamWriter file = new StreamWriter(@"D:\Suffix.txt"))
+            {
+                Console.WriteLine("\n\nGiven input \n" + name);
+                Console.WriteLine("\n\nSplitting  array into suffixes\n");
+                
+                file.WriteLine("\n\nGiven input \n" + name);
+                file.WriteLine("\n\nSplitting  array into suffixes\n");
+
+                while (j < name.Length)
+                {
+                    if (j == 0)
+                    {
+                        re_na[j] = name;
+                    }
+                    else
+                    {
+                        re_na[j] = name.Remove(0, j);
+                    }
+                    file.WriteLine(re_na[j]);
+                    Console.WriteLine(re_na[j]);
+                    j++;
+                }
+
+                j = 0;
+                file.WriteLine("\n\nSorted suffix array\n");
+                Console.WriteLine("\n\nSorted suffix array\n");
+                
+                while (alpha <= 'z')
+                {
+                    j = 0;
+                    while (j < re_na.Length)
+                    {
+                        z = 0; num = 0;
+                        if (flag == false)
+                        {
+                            while (z < re_na.Length)
+                            {
+                                com = char.Parse(re_na[z].Substring(0, 1));
+
+                                if (!((com >= 'a' && com <= 'z') || (com >= 'A' && com <= 'Z')))
+                                {
+                                    str_collection[num] = re_na[z];
+                                    num++;
+                                }
+                                flag = true;
+                                z++; j++;
+                            }
+                        }
+                        file.Close();
+                        pg.print_in_order(str_collection, num);
+                        z = 0; num = 0;
+                        while (z < re_na.Length)
+                        {
+                            com = char.Parse(re_na[z].Substring(0, 1));
+
+                            if ((com >= 'a' && com <= 'z') || (com >= 'A' && com <= 'Z'))
+                            {
+                                if (com == alpha || com == alphaC)
+                                {
+                                    str_collection[num] = re_na[z];
+                                    num++;
+                                }
+                            }
+                            z++;
+                        }
+                        alpha++; alphaC++;
+                        j++;
+                        file.Close();
+                        pg.print_in_order(str_collection, num);
+                    }
+                }
+            }
+            
+            
+            Console.ReadLine();
+        }
+
+        void print_in_order(string[] arr,int num)
+        {
+            string temp; int z = 0;
+            using(StreamWriter append = File.AppendText(@"D:\Suffix.txt"))
+            {
+                for (int i = 0; i < num; i++)
+                {
+                    for (int j = 0; j < num - 1; j++)
+                    {
+                        if (arr[j].ToCharArray().Count() > arr[j + 1].ToCharArray().Count())
+                        {
+                            temp = arr[j + 1];
+                            arr[j + 1] = arr[j];
+                            arr[j] = temp;
+                        }
+                    }
+                }
+                
+                while (z < num)
+                {
+                    append.WriteLine(arr[z]);
+                    Console.WriteLine(arr[z]); z++;
+                }
+            }
+
+            
+        }
+    }
+}

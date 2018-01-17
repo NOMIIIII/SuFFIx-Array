@@ -1,0 +1,6 @@
+C:\Users\Nauman\Desktop\delete it\delete it\bin\Debug\delete it.exe.config
+C:\Users\Nauman\Desktop\delete it\delete it\bin\Debug\delete it.exe
+C:\Users\Nauman\Desktop\delete it\delete it\bin\Debug\delete it.pdb
+C:\Users\Nauman\Desktop\delete it\delete it\obj\Debug\delete it.csprojResolveAssemblyReference.cache
+C:\Users\Nauman\Desktop\delete it\delete it\obj\Debug\delete it.exe
+C:\Users\Nauman\Desktop\delete it\delete it\obj\Debug\delete it.pdb
